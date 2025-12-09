@@ -1,93 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Calculadora de IVA</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  <meta charset="UTF-8">
+  <title>Calculadora de IVA 19%</title>
 
-        .calculadora {
-            background-color: #08e6b5;
-            padding: 25px;
-            border-radius: 10px;
-            width: 320px;
-            text-align: center;
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
-        }
+  <!-- ===== CSS ===== -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f70000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        h2 {
-            margin-bottom: 20px;
-        }
+    .calculadora {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    }
 
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
+    h1 {
+      text-align: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #2196f3;
-            color: white;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-        }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
 
-        button:hover {
-            background-color: #1976d2;
-        }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      font-size: 16px;
+    }
 
-        .resultado {
-            margin-top: 15px;
-            font-size: 16px;
-            text-align: left;
-        }
-    </style>
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+      background: #04e20f;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .resultado {
+      margin-top: 20px;
+      font-size: 16px;
+      background: #f7f7f7;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="calculadora">
-    <h2>Calculadora de IVA (19%)</h2>
+  <!-- ===== HTML ===== -->
+  <div class="calculadora">
+    <h1>Calculadora IVA 19%</h1>
 
-    <input type="number" id="precio" placeholder="Ingrese precio del producto">
+    <label>Precio sin IVA:</label>
+    <input type="number" id="precio" placeholder="Ej: 10000">
 
     <button onclick="calcularIVA()">Calcular</button>
 
     <div class="resultado">
-        <p>Precio Neto: $<span id="neto">0</span></p>
-        <p>IVA (19%): $<span id="iva">0</span></p>
-        <p><strong>Total con IVA: $<span id="total">0</span></strong></p>
+      <p>IVA (19%): $<span id="iva">0</span></p>
+      <p>Total con IVA: $<span id="total">0</span></p>
     </div>
-</div>
+  </div>
 
-<script>
-function calcularIVA() {
-    let precio = document.getElementById("precio").value;
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    function calcularIVA() {
+      let precio = document.getElementById("precio").value;
 
-    if (precio === "" || precio <= 0) {
-        alert("Ingrese un valor válido");
-        return;
+      let iva = precio * 0.19;
+      let total = Number(precio) + iva;
+
+      document.getElementById("iva").innerText = iva.toFixed(0);
+      document.getElementById("total").innerText = total.toFixed(0);
     }
-
-    let neto = parseFloat(precio);
-    let iva = neto * 0.19;
-    let total = neto + iva;
-
-    document.getElementById("neto").innerText = neto.toFixed(0);
-    document.getElementById("iva").innerText = iva.toFixed(0);
-    document.getElementById("total").innerText = total.toFixed(0);
-}
-</script>
+  </script>
 
 </body>
 </html>
